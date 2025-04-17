@@ -1,0 +1,7 @@
+[build]
+builder = "NIXPACKS"
+[build.nixpacksPlan]
+phases = ["dotnet"]
+
+[start]
+cmd = "dotnet run --project ./backend"
