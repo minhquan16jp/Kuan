@@ -1,16 +1,19 @@
-# ================== Build stage ==================
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-
-# Copy code
 COPY . .
 RUN dotnet restore
+RUN dotnet build -c Release -o /app/build
+
+FROM build AS publish
 RUN dotnet publish -c Release -o /app/publish
 
-# ================== Runtime stage ==================
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=publish /app/publish .
 
-EXPOSE 8080
 ENTRYPOINT ["dotnet", "GreenDrive.dll"]
