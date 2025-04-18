@@ -16,4 +16,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-ENTRYPOINT ["dotnet", "kuan.dll"]
+ENTRYPOINT ["dotnet", "Kuan.dll"]
