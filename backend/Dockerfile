@@ -6,7 +6,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore
+RUN dotnet restore GreenDrive.csproj
 RUN dotnet build GreenDrive.csproj -c Release -o /app/build
 
 FROM build AS publish
