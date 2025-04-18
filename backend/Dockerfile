@@ -16,4 +16,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-ENTRYPOINT ["dotnet", "Kuan.dll"]
+ENTRYPOINT ["dotnet", "GreenDrive.csproj"]
